@@ -9,7 +9,7 @@ metadb:
 
 server:
   port: 8084 #程序服务端口
-  token: "123456" #程序token
+  token: "123456" #程序token，1.2版本需要用""双引号括起来
   loadhtmlglob: /u1/dlopsnas/chengken/templates/html/* #html静态页面地址
   loadstatic: /u1/dlopsnas/chengken/templates/static #js、css静态文件地址
 
