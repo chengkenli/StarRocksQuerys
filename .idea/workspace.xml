@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ba1f44c4-77b1-47e7-be8c-c810f1d428a9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../202212/.idea/202212.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../IsExeRuning/.idea/isexeruning.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Json2Go/.idea/Json2Go.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../SmartCaesar/app/smart_login.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StarRocksDDL/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StarRocksDDL/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StarRocksQueris/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StarRocksQueris/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StarRocks_License/.idea/StarRocks_License.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../StarRocks_License/StarRocks_License.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../alertmjson/.idea/alertmjson.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../anth/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../anth/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../anth/anth.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../anth/http.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../anth/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../awesomeProject/.idea/awesomeProject.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backups/.idea/backups.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../backups2.0/.idea/backups2.0.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bitcoin/.idea/bitcoin.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bitcoin/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cc/.idea/cc.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cdfs/.idea/cdfs.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../chengken/.idea/chengken.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../coin/.idea/coin.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../copytb - 副本/.idea/copytb.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cossync/.idea/cossync.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../cossync/cossync.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../counters/.idea/counters.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../csql/.idea/csql.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../ddlservice/.idea/ddlservice.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../deepseek-ai/app/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../deepseek-ai/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../deepseek-ai/util/conf.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../deepseek-ai/util/def.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../deepseek-ai/util/enc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../deepseek-ai/util/logrus.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/diwang1.0.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/dwsg/dwsg_login.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/dwsg/init.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/util/conf.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/util/def.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/util/enc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../diwang1.0/util/logrus.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dlmonitor/.idea/dlmonitor.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dlmonitor/dlmonitor.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dos/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dos/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dos/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dos/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dos/dos.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dos/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dos/shell/shell.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dwsg/Desktop.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../dwsg/dwsg.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/.enc.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/conn/redis.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/conn/shell.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/enc.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/img_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/img_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/img_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/other/http.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/other/other_img.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/customer_apimsg.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/customer_crontab.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/customer_draft.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/customer_interactiveMsg.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/customer_modelmsg.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/customer_news.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/customer_service.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/customer_subscribe.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/customer_token.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/customer_user.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/def.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/http.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/service/run.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/util/conf.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/util/def.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/util/enc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../enc/util/logger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../encWeChat/enc.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../encpass/.idea/encpass.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../fundge/.idea/fundge.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gate/gate.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gate/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gate/run/run.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gate/util/conf.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gate/util/def.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gatebitcoin/.idea/gatebitcoin.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gateio/.idea/gateio.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gates/.idea/gates.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gateservice - 副本/.idea/gateservice.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gateservice/.idea/gateservice.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../getops/.idea/getops.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gochat/.idea/gochat.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gogit/.idea/gogit.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gogit/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gogit/run/run.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gogit/util/conf.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gogit/util/def.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gogold/.idea/gogold.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gohistory/.idea/gohistory.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gohive - 副本/.idea/gohive.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gohive/.idea/gohive.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gomonitorsignal/.idea/gomonitorsignal.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../goproxy/.idea/goproxy.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gosftp/.idea/gosftp.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../goshell/.idea/goshell.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gosync/.idea/gosync.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../goweather/.idea/goweather.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../hivetoexternal/.idea/hivetoexternal.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../htmlRender/.idea/htmlRender.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../huangli/.idea/huangli.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../huangli/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/app/engine_exp.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/app/engine_file.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/app/engine_img.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/app/engine_ocr.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/app/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/lib/mmmojo.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/lib/mmmojo_64.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/lib/ocr/Model/FPOCRRecog.xnet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/lib/ocr/Model/OCRDetFP32.xnet.nas" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/lib/ocr/Model/OCRParaDetV1.1.0.26.xnet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/lib/ocr/Model/OCRRecogFP32V1.1.0.26.xnet" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/lib/ocr/Model/RecDict" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/lib/ocr/Model/sohu_simp.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/lib/ocr/ocr.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/lib/ocr/x64.config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/lib/wcocr.dll" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/util/conf.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/util/def.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/util/enc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../img2text/util/logrus.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jira/.idea/jira.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jobServiceLog/.idea/jobServiceLog.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../jobServiceLog/jobServiceLog.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kaclient/.idea/kaclient.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kaservice/.idea/kaservice.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../label/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../label/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../label/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../label/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../label/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../label/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../label/http.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../label/label.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../label/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../learning/bin/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../learning/learning.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../learning/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../learning/util/conf.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../learning/util/def.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../logger/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../logger/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../logger/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../logger/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../logger/logger.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../logger/loggers/logger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../logger/loggers/logs.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lotnum/.idea/lotnum.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lotteryCar/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lotteryCar/.lotteryCar.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lotteryCar/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lotteryCar/lotteryCar.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lotteryCar/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lotteryCar/util/conf.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lotteryCar/util/def.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lotteryCar/util/enc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../lotteryCar/util/logger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../material/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../material/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../material/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../material/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../material/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../material/http.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../material/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../material/material.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mcoin/.idea/mcoin.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mcoin/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../miservice/.idea/miservice.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mongosync/.idea/mongosync.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../mongosync_v2/.idea/mongosync.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/.idea/okbang.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/.idea/watcherTasks.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/.okbang.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/okbang.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/service/chrome.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/service/email.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/service/http.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/service/run.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/service/send.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/util/conf.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/util/def.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/util/enc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/util/logger.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okbang/util/replacevar.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okx-client/okx-client.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../okx-client/util/enc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../openApi/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../openApi/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../openApi/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../openApi/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../openApi/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../openApi/http.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../openApi/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../openApi/openApi.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../openwechat/.idea/openwechat.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pjstack/be.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pjstack/fe.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pjstack/pstack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../pjstack/tar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../proc/ConnectSSH.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../qaoo/def.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../qaoo/qaoo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../qaoo/rd.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../quickstart/.idea/quickstart.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../s3/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../s3/s3.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../setu/init/init.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../sftpsync/.idea/sftpsync.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../smartsync_v2.7/.idea/smartsync.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../starrockse/.idea/starrockse.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../upload/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../upload/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../upload/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../upload/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../upload/go.mod" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../upload/http.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../upload/main.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../upload/other_img.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../upload/redis.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../upload/shell.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../upload/upload.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wechat/wechat.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wenews/.idea/wenews.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wenews/.wenews.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../wenews/wenews.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../xlsxTocsv/.idea/xlsxTocsv.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../yarninfo/.idea/yarninfo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../yarnkill/.idea/yarnkill.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../yarnops/.idea/yarnops.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../yarns/.idea/yarns.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../yarntotal/.idea/yarntotal.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="GOROOT" url="file://$PROJECT_DIR$/../../../../../Program Files/go1.23.8" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2ydNOQ9uJisQZ1wizA451Ww6Hlr" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.automatic.dependencies.download": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <module name="StarRocksQuerys" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="GoTestRunConfiguration" factoryName="Go Test">
+      <module name="StarRocksQuerys" />
+      <working_directory value="$PROJECT_DIR$" />
+      <go_parameters value="-i" />
+      <kind value="DIRECTORY" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ba1f44c4-77b1-47e7-be8c-c810f1d428a9" name="Changes" comment="" />
+      <created>1750160485157</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1750160485157</updated>
+      <workItem from="1750160498319" duration="75000" />
+      <workItem from="1750160807863" duration="360000" />
+      <workItem from="1750161186045" duration="345000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VgoProject">
+    <settings-migrated>true</settings-migrated>
+  </component>
+</project>

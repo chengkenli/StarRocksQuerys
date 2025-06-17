@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据库操作面板</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        
+        .panel-container {
+            display: flex;
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .panel {
+            flex: 1;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 30px;
+        }
+        
+        .panel-title {
+            color: #2c3e50;
+            margin-top: 0;
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .control-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #4a5568;
+        }
+        
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            background-color: white;
+            font-size: 16px;
+            color: #4a5568;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 18px;
+            transition: all 0.2s;
+        }
+        
+        select:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.2);
+        }
+        
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            resize: vertical;
+            transition: all 0.2s;
+        }
+        
+        textarea:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.2);
+        }
+        
+        input[type="text"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.2s;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #4299e1;
+            box-shadow: 0 0 0 4px rgba(66, 153, 225, 0.2);
+        }
+        
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        button {
+            padding: 13px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background-color: #4299e1;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #3182ce;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background-color: #e2e8f0;
+            color: #4a5568;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #cbd5e0;
+            transform: translateY(-2px);
+        }
+        
+        .btn-single {
+            width: 100%;
+            background-color: #48bb78;
+            color: white;
+        }
+        
+        .btn-single:hover {
+            background-color: #38a169;
+            transform: translateY(-2px);
+        }
+        
+        .btn-single:disabled {
+            background-color: #a0aec0;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #4a5568;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel-container">
+        <!-- 第一个面板：库表提取 -->
+        <div class="panel">
+            <h2 class="panel-title">库表提取</h2>
+            
+            <div class="control-group">
+                <label for="operation-select">选择操作</label>
+                <select id="operation-select">
+                    <option value="">-- 请选择操作 --</option>
+                    <option value="query">查询数据</option>
+                    <option value="update">更新数据</option>
+                    <option value="delete">删除数据</option>
+                    <option value="create">创建数据</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label for="content-textarea">输入SQL语句</label>
+                <textarea id="content-textarea" placeholder="请输入SQL查询语句..."></textarea>
+            </div>
+            
+            <div class="button-group">
+                <button class="btn-primary" id="submit-btn">执行查询</button>
+                <button class="btn-secondary" id="reset-btn">重置表单</button>
+            </div>
+            
+            <div class="control-group">
+                <label>查询结果</label>
+                <pre id="result-area">等待查询操作...</pre>
+            </div>
+        </div>
+        
+        <!-- 第二个面板：权限查看 -->
+        <div class="panel">
+            <h2 class="panel-title">权限查看</h2>
+            
+            <div class="control-group">
+                <label for="username-input">请输入用户名</label>
+                <input type="text" id="username-input" placeholder="输入要查询的用户名">
+            </div>
+            
+            <div class="control-group">
+                <button class="btn-single" id="check-permission-btn" disabled>查询权限</button>
+            </div>
+            
+            <div class="control-group">
+                <label>权限信息</label>
+                <pre id="permission-info">请输入用户名并点击查询按钮</pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 库表提取面板功能
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            const operation = document.getElementById('operation-select').value;
+            const content = document.getElementById('content-textarea').value;
+            
+            if (!operation) {
+                document.getElementById('result-area').textContent = '错误：请先选择操作类型';
+                return;
+            }
+            
+            // 模拟API返回结果
+            const result = `操作类型: ${operation}
+时间: ${new Date().toLocaleString()}
+SQL语句: 
+${content || '无'}
+
+返回结果: 
+成功提取10条数据`;
+            
+            document.getElementById('result-area').textContent = result;
+        });
+        
+        document.getElementById('reset-btn').addEventListener('click', function() {
+            document.getElementById('operation-select').value = '';
+            document.getElementById('content-textarea').value = '';
+            document.getElementById('result-area').textContent = '等待查询操作...';
+        });
+        
+        // 权限查看面板功能
+        const usernameInput = document.getElementById('username-input');
+        const checkPermissionBtn = document.getElementById('check-permission-btn');
+        
+        usernameInput.addEventListener('input', function() {
+            checkPermissionBtn.disabled = !this.value.trim();
+        });
+        
+        checkPermissionBtn.addEventListener('click', function() {
+            const username = usernameInput.value.trim();
+            
+            if (!username) {
+                document.getElementById('permission-info').textContent = '错误：用户名不能为空';
+                return;
+            }
+            
+            // 模拟权限数据
+            const permissions = `用户: ${username}
+角色: ${username === 'admin' ? '管理员' : '普通用户'}
+权限列表:
+${username === 'admin' ? 
+'- 数据库读取\n- 数据库写入\n- 用户管理\n- 权限管理' : 
+'- 数据库读取\n- 个人数据管理'}
+查询时间: ${new Date().toLocaleString()}`;
+            
+            document.getElementById('permission-info').textContent = permissions;
+        });
+    </script>
+</body>
+</html>

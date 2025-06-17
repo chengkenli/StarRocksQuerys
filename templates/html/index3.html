@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <title>慢查询汇报</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+    <link href="/static/bootstrap.min.css" rel="stylesheet" />
+    <link href="/static/bootstrap-icons.css" rel="stylesheet" />
+    <link href="/static/web.css" rel="stylesheet" />
+    <script src="/static/auth.js"></script>
+    <script src="/static/api.js"></script>
+    <script src="/static/ui.js"></script>
+    <script src="/static/right.js"></script>
+    <script src="/static/slow.js"></script>
+    <script src="/static/main.js"></script>
+  </head>
+  <body>
+    <!-- 令牌验证模态框 -->
+    <div id="tokenModal">
+      <div class="modal-content">
+        <h2 class="modal-title">StarRocks查询监控</h2>
+        <div class="token-input-container">
+          <input type="password" id="tokenInput" placeholder="token" />
+          <div class="error-message" id="errorMessage">token不能为空</div>
+        </div>
+        <button class="btn-submit" id="submitBtn">验证</button>
+      </div>
+    </div>
+    <!-- 精致细小的浮动选择框 -->
+    <div class="floating-select-wrapper">
+      <select id="dynamicSelect" class="form-select form-select-sm border-0 shadow">
+        <option value="" selected disabled>正在加载选项...</option>
+      </select>
+    </div>
+    <div id="mainContent">
+      <div class="container-fluid">
+        <div class="split-view">
+          <!-- 左边面板 -->
+          <div class="left-panel" style="flex: 0 0 65%">
+            <div class="panel-content">
+              <h4 style="margin-bottom: 15px" class="monitor-title">
+                <i class="bi bi-database"></i>
+                查询监控
+                <span class="tooltip"></span>
+                <!-- 这里放动态值 -->
+              </h4>
+
+              <div class="filter-section">
+                <div class="badge-group">
+                  <span id="query-count" class="badge bg-info">total:0</span>
+                  <span id="query-run" class="badge bg-success">running:0</span>
+                  <span id="query-pend" class="badge bg-warning">pending:0</span>
+                  <span id="query-sleep" class="badge bg-secondary">sleep:0</span>
+                </div>
+                <div class="button-group">
+                  <!-- 报错观察按钮 -->
+                  <button id="errorReportBtn" class="btn btn-dark btn-sm ms-2">报错异常观察</button>
+                  <button id="kill-info" class="btn btn-dark btn-sm ms-2">清理睡眠连接</button>
+                  <button id="kill-slow" class="btn btn-warning btn-sm ms-2">查杀慢查询</button>
+                  <button id="kill-critical" class="btn btn-danger btn-sm ms-2">查杀高消耗</button>
+                  <button id="kill-all" class="btn btn-danger btn-sm ms-2">清退整体语句</button>
+                  <button id="kill-one" class="btn btn-danger btn-sm ms-2">清退选择ID</button>
+                </div>
+              </div>
+
+              <div class="table-responsive" style="height: 100vh; overflow-y: auto">
+                <table id="query-table" class="table table-sm table-striped table-hover">
+                  <thead class="table-dark" style="position: sticky; top: 0">
+                    <tr>
+                      <th>Order</th>
+                      <th>ID</th>
+                      <th>User</th>
+                      <th>ClientIP</th>
+                      <th>Time(second)</th>
+                      <th>State</th>
+                      <th>Queris</th>
+                      <th>Disconnect</th>
+                      <th>Command</th>
+                    </tr>
+                  </thead>
+                  <tbody id="query-data">
+                    <!-- 数据通过JS动态加载 -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右边面板 -->
+          <div class="right-panel">
+            <div class="panel-content">
+              <h4 style="margin-bottom: 15px">查询队列</h4>
+              <!-- 新增的状态和操作栏 -->
+              <div class="filter-section">
+                <div class="badge-group">
+                  <span id="slow-total" class="badge bg-info">total:0</span>
+                  <span id="slow-clear" class="badge bg-secondary">clear:0</span>
+                  <span id="slow-warn" class="badge bg-warning">warn:0</span>
+                  <span id="slow-kill" class="badge bg-danger">kill:0</span>
+                </div>
+                <div class="button-group">
+                  <button id="exit-info" class="btn btn-dark btn-sm ms-2">...</button>
+                </div>
+              </div>
+              <!-- 队列消耗情况 -->
+              <div class="table-responsive" style="max-height: 30vh; overflow-y: auto">
+                <table id="resource-table" class="table table-sm table-striped">
+                  <thead class="table-dark" style="position: sticky; top: 0">
+                    <tr>
+                      <th>Order</th>
+                      <th>ID</th>
+                      <th>ScanBytes</th>
+                      <th>ScanRows</th>
+                      <th>MemoryUsage</th>
+                      <th>CPUTime</th>
+                      <th>ExecTime</th>
+                    </tr>
+                  </thead>
+                  <tbody id="resource-data">
+                    <!-- 资源数据通过JS动态加载 -->
+                  </tbody>
+                </table>
+              </div>
+              <!-- 慢查询查杀汇报 -->
+              <div class="mt-4">
+                <h5 class="border-bottom pb-2">
+                  <i class="bi bi-speedometer2"></i>
+                  拦截汇报
+                </h5>
+                <div class="table-responsive" style="height: 100vh; flex: 1; overflow-y: auto">
+                  <table class="table table-sm table-hover">
+                    <thead class="table-light" style="position: sticky; top: 0">
+                      <tr>
+                        <th>Order</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>StartTime</th>
+                        <th>ExecTime</th>
+                        <th>Type</th>
+                        <th>State</th>
+                      </tr>
+                    </thead>
+                    <tbody id="slow-data"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 模态框 -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-container">
+        <div class="modal-header">
+          <span class="modal-title">报错详情</span>
+          <button class="close-button" id="closeModal">&times;</button>
+        </div>
+        <div id="errorDetailsContainer">
+          <table class="table table-sm table-hover">
+            <thead class="table-light" style="position: sticky; top: 0">
+              <tr>
+                <th>ID</th>
+                <th>时间</th>
+                <th>用户</th>
+                <th>查询ID</th>
+                <th>错误消息</th>
+              </tr>
+            </thead>
+            <tbody id="err-data">
+              <!-- 数据将通过JS动态加载 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="/static/selectid.js"></script>
+    <script src="/static/watermark.js"></script>
+    <script src="/static/selectapp.js"></script>
+    <script src="/static/showerr.js"></script>
+  </body>
+</html>
