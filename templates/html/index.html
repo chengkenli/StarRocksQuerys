@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarRocks</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .tooltip {
+            position: relative; /* 设置为相对定位，以便工具提示可以相对于它定位 */
+            display: inline-block; /* 使元素成为块级内联元素，以便可以设置工具提示的位置 */
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 300px; /* 设置工具提示的宽度 */
+            background-color: #000; /* 工具提示的背景颜色 */
+            color: #fff; /* 工具提示的文字颜色 */
+            text-align: center;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute; /* 绝对定位 */
+            z-index: 1;
+            top: 100%; /* 将工具提示的顶部与父元素的底部对齐 */
+            left: 50%; /* 水平居中 */
+            margin-left: -150px; /* 使用一半的宽度来居中工具提示 */
+            opacity: 0;
+            transition: opacity 0.3s;
+            /* 通过以下两个属性调整工具提示的位置 */
+            transform: translateY(-20px); /* 向上稍微移动工具提示 */
+            pointer-events: none; /* 防止工具提示阻止对下面元素的点击 */
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+            /* 不需要更改 bottom 或 top 属性，因为我们希望工具提示在元素的下方 */
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select, textarea, input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #4cae4c;
+        }
+        #result {
+            background-color: #e9e9e9;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 4px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p class="tooltip">库表提取❓
+            <span class="tooltiptext">只提取标准语句(语句中是<库名.表名>的格式)，否则无法识别表名</span>
+        </p>
+        <form id="parse-form" action="/parse-table-name" method="post">
+            <label for="option">选择一个选项:</label>
+            <select id="option" name="option" onchange="copySelectValue()">
+                <!-- Options are grouped for better readability -->
+                <optgroup label="StarRocks (Tencent Cloud)">
+                    <option value="sr-adhoc">SR-ADHOC</option>
+                    <option value="sr-app">SR-APP</option>
+                    <option value="sr-app">SR-CDP</option>
+                    <option value="sr-app">SR-API</option>
+                    <option value="sr-app">SR-MA</option>
+                    <option value="sr-app">SR-DB</option>
+                    <option value="sr-app">SR-QA</option>
+                    <!-- Additional options... -->
+                </optgroup>
+                <optgroup label="StarRocks (Support Center)">
+                    <option value="sccts">SCCTS</option>
+                    <!-- Additional options... -->
+                </optgroup>
+            </select>
+            <label for="stmt1">输入您的语句:</label>
+            <textarea id="stmt1" name="stmt1" rows="4" placeholder="请输入您的语句..."></textarea>
+            <input type="submit" value="标准">
+        </form>
+
+        <form id="deep-parse-form" action="/deep-parse-table-name" method="post">
+            <input type="hidden" id="option2" name="option2">
+            <input type="hidden" id="stmt2" name="stmt2" value="">
+            <input type="submit" value="深度">
+        </form>
+
+        <h6>Result:</h6>
+        <div id="result"></div>
+    </div>
+
+    <script>
+    if (document.getElementById('option2').value === '') {
+        // 如果没有选中的值，则设置默认值给targetInput
+        document.getElementById('option2').value = 'sr-adhoc';
+    }
+    function copySelectValue() {
+        // 获取第一个表单中select元素的值
+        const sv = document.getElementById('option').value;
+        if (sv === '') {
+            // 如果没有选中的值，则设置默认值给targetInput
+            document.getElementById('option2').value = 'sr-adhoc';
+        }else {
+            // 将这个值设置到第二个表单的隐藏input元素中
+            document.getElementById('option2').value = sv;
+        }
+    }
+    // 绑定按钮事件，使得两个表单共享输入框的值
+    document.getElementById('parse-form').addEventListener('submit', function(event) {
+        document.getElementById('deep-parse-form').stmt2.value = document.getElementById('parse-form').stmt1.value;
+    });
+    document.getElementById('deep-parse-form').addEventListener('submit', function(event) {
+        document.getElementById('parse-form').stmt1.value = document.getElementById('deep-parse-form').stmt2.value;
+    });
+
+    // 提交表单并获取结果
+    function submitForm(action, data) {
+        fetch(action, {
+            method: 'POST',
+            body: new URLSearchParams(data),
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('result').innerHTML = '<pre>' + JSON.stringify(JSON.parse(data.result), null, 4) + '</pre>';
+                // document.getElementById('result').textContent = data.result;
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+
+    // 监听表单提交事件并阻止默认行为
+    document.getElementById('parse-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        submitForm(this.action, new FormData(this));
+    });
+
+    document.getElementById('deep-parse-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        submitForm(this.action, new FormData(this));
+    });
+</script>
+</body>
+</html>
