@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta charset="UTF-8" />
+    <title>StarWatch</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico" />
+    <link href="/static/bootstrap.min.css" rel="stylesheet" />
+    <link href="/static/bootstrap-icons.css" rel="stylesheet" />
+    <link href="/static/web.css" rel="stylesheet" />
+    <link href="/static/btn.css" rel="stylesheet" />
+    <link href="/static/bead.css" rel="stylesheet" />
+    <script src="/static/bootstrap.bundle.min.js"></script>
+    <script src="/static/auth.js"></script>
+    <script src="/static/api.js"></script>
+    <script src="/static/ui.js"></script>
+    <script src="/static/ui-query.js"></script>
+    <script src="/static/ui-broker.js"></script>
+    <script src="/static/ui-submit.js"></script>
+    <script src="/static/ui-resourceg.js"></script>
+    <script src="/static/right.js"></script>
+    <script src="/static/slow.js"></script>
+    <script src="/static/main.js"></script>
+  </head>
+  <body>
+    <!-- 顶部居中确认对话框 -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" style="position: fixed; top: 15px; left: 50%; transform: translateX(-50%); margin: 0; max-width: 85%; width: auto">
+        <div class="modal-content" style="border-radius: 8px">
+          <div class="modal-body text-center py-2 px-3">
+            <!-- 进一步减少内边距 -->
+            <i class="bi bi-question-circle-fill text-primary fs-3 mb-1"></i>
+            <!-- 图标缩小到fs-3 -->
+            <p id="confirmMessage" class="fs-6 mb-0"></p>
+            <!-- 正文缩小到fs-6 -->
+          </div>
+          <div class="modal-footer justify-content-center border-0 pt-0 pb-2">
+            <!-- 底部减少内边距 -->
+            <button type="button" class="btn btn-sm btn-outline-secondary px-3" data-bs-dismiss="modal" style="font-size: 0.875rem">取消</button>
+            <button type="button" class="btn btn-sm btn-primary px-3" id="confirmAction" style="font-size: 0.875rem">确定</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Toast容器（固定在右上角） -->
+    <div class="position-fixed top-0 start-50 translate-middle-x p-3" style="z-index: 11">
+      <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-body">
+          <!-- 消息内容将动态插入这里 -->
+          <span id="toastMessage"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 仪表盘 -->
+    <div class="gauges-background">
+      <div class="gauge gauge-cpu">
+        <div class="gauge-inner">
+          <div class="gauge-fill"></div>
+          <div class="gauge-center">
+            <div class="gauge-value">0%</div>
+            <div class="gauge-label">CPU</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gauge gauge-memory">
+        <div class="gauge-inner">
+          <div class="gauge-fill"></div>
+          <div class="gauge-center">
+            <div class="gauge-value">0%</div>
+            <div class="gauge-label">内存</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gauge gauge-io">
+        <div class="gauge-inner">
+          <div class="gauge-fill"></div>
+          <div class="gauge-center">
+            <div class="gauge-value">0%</div>
+            <div class="gauge-label">IO</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="gauge gauge-disk">
+        <div class="gauge-inner">
+          <div class="gauge-fill"></div>
+          <div class="gauge-center">
+            <div class="gauge-value">0%</div>
+            <div class="gauge-label">存储</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 令牌验证模态框 -->
+    <div id="tokenModal">
+      <div class="modal-content">
+        <h2 class="modal-title">StarWatch(星辰守望者)</h2>
+        <div class="token-input-container">
+          <input type="password" id="tokenInput" placeholder="token" />
+          <div class="error-message" id="errorMessage">token不能为空</div>
+        </div>
+        <button class="btn-submit" id="submitBtn">验证</button>
+      </div>
+    </div>
+    <!-- 精致细小的浮动选择框 -->
+    <div class="floating-select-wrapper">
+      <select id="dynamicSelect" class="form-select form-select-sm border-0 shadow">
+        <option value="" selected disabled>正在加载选项...</option>
+      </select>
+    </div>
+    <div id="mainContent">
+      <div class="container-fluid">
+        <div class="split-view">
+          <!-- 左边面板 -->
+          <div class="left-panel" style="flex: 0 0 65%">
+            <div class="panel-content">
+              <!-- Tab导航 - 保持原有标题样式 -->
+              <div class="d-flex align-items-center" style="margin-bottom: 15px">
+                <ul class="nav nav-tabs border-bottom-0 flex-grow-1" id="monitorTabs" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active d-flex align-items-center monitor-title" id="query-tab" data-bs-toggle="tab" data-bs-target="#query" type="button" role="tab">
+                      <i class="bi bi-database me-1"></i>
+                      QUERY GLOBAL
+                      <span id="query-count-badge" class="position-absolute top-0 start-20 translate-middle badge rounded-pill bg-danger" style="display: none">
+                        <span class="visually-hidden">unread messages</span>
+                      </span>
+                      <span class="tooltip"></span>
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link d-flex align-items-center position-relative" id="broker-tab" data-bs-toggle="tab" data-bs-target="#broker" type="button" role="tab">
+                      <i class="bi bi-buildings me-1"></i>
+                      BROKER LOAD
+                      <span id="broker-count-badge" class="position-absolute top-0 start-20 translate-middle badge rounded-pill bg-danger" style="display: none">
+                        <span class="visually-hidden">unread messages</span>
+                      </span>
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link d-flex align-items-center position-relative" id="submit-tab" data-bs-toggle="tab" data-bs-target="#submit" type="button" role="tab">
+                      <i class="bi bi-stripe me-1"></i>
+                      SUBMIT TASK
+                      <span id="submit-count-badge" class="position-absolute top-0 start-20 translate-middle badge rounded-pill bg-danger" style="display: none">
+                        <span class="visually-hidden">unread messages</span>
+                      </span>
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link d-flex align-items-center position-relative" id="stream-tab" data-bs-toggle="tab" data-bs-target="#stream" type="button" role="tab">
+                      <i class="bi bi-escape me-1"></i>
+                      STREAM LOAD
+                      <span id="stream-count-badge" class="position-absolute top-0 start-20 translate-middle badge rounded-pill bg-danger" style="display: none">
+                        <span class="visually-hidden">unread messages</span>
+                      </span>
+                    </button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button
+                      class="nav-link d-flex align-items-center position-relative"
+                      id="resourcegroup-tab"
+                      data-bs-toggle="tab"
+                      data-bs-target="#resourcegroup"
+                      type="button"
+                      role="tab">
+                      <i class="bi bi-fuel-pump me-1"></i>
+                      RESOURCE GROUP
+                      <span id="resourcegroup-count-badge" class="position-absolute top-0 start-20 translate-middle badge rounded-pill bg-info" style="display: none">
+                        <span class="visually-hidden">unread messages</span>
+                      </span>
+                    </button>
+                  </li>
+                  <!-- 可以继续添加更多标签页 -->
+                </ul>
+              </div>
+
+              <!-- Tab内容 -->
+              <div class="tab-content">
+                <!-- 查询监控标签页 - 保持原有内容 -->
+                <div class="tab-pane fade show active" id="query" role="tabpanel" aria-labelledby="query-tab">
+                  <div class="filter-section">
+                    <div class="badge-group">
+                      <span id="query-count" class="badge bg-info">TOTAL:0</span>
+                      <span id="query-run" class="badge bg-success">RUNNING:0</span>
+                      <span id="query-pend" class="badge bg-warning">PENDING:0</span>
+                      <span id="query-sleep" class="badge bg-secondary">SLEEP:0</span>
+                    </div>
+                    <div class="button-group">
+                      <!-- 饼图观察区 -->
+                      <button id="pieSubmit" class="btn btn-info btn-sm position-relative overflow-hidden glitch-btn" data-tooltip-msg="查询次数(饼图)">Connections</button>
+                      <!-- 报错观察按钮 -->
+                      <button id="errorReportBtn" class="btn btn-danger btn-sm position-relative overflow-hidden glitch-btn" data-tooltip-msg="查询报错(预览)">Query</button>
+                      <button id="kill-info" class="btn btn-dark btn-sm ms-2" data-tooltip-msg="查杀睡眠连接">IDLE</button>
+                      <button id="kill-slow" class="btn btn-warning btn-sm ms-2" data-tooltip-msg="查杀慢查询标签">DROP</button>
+                      <button id="kill-critical" class="btn btn-danger btn-sm ms-2" data-tooltip-msg="查杀高消耗标签">KILL</button>
+                      <button id="kill-all" class="btn btn-danger btn-sm ms-2" data-tooltip-msg="暴力清退所有正在运行中的语句">PURGE</button>
+                      <button id="kill-one" class="btn btn-danger btn-sm ms-2" data-tooltip-msg="清退已选择的语句">CLEAR</button>
+                    </div>
+                  </div>
+
+                  <div class="table-responsive" style="height: 100vh; overflow-y: auto">
+                    <table id="query-table" class="table table-sm table-striped table-hover">
+                      <thead class="table-dark" style="position: sticky; top: 0">
+                        <tr>
+                          <th>ID</th>
+                          <th>ConnectionId</th>
+                          <th>User</th>
+                          <th>Operational</th>
+                          <th>ClientIP</th>
+                          <th>Time(second)</th>
+                          <th>Queris</th>
+                          <th>Disconnect</th>
+                          <th>Command</th>
+                        </tr>
+                      </thead>
+                      <tbody id="query-data">
+                        <!-- 数据通过JS动态加载 -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <!-- 自定义标签页1 -->
+                <!-- broker load -->
+                <div class="tab-pane fade" id="broker" role="tabpanel" aria-labelledby="broker-tab">
+                  <div class="filter-section">
+                    <div class="badge-group">
+                      <span id="broker-total" class="badge bg-info">TOTAL:0</span>
+                      <span id="broker-loading" class="badge bg-success">LOADING:0</span>
+                      <span id="broker-pending" class="badge bg-warning">PENDING:0</span>
+                      <span id="broker-queueing" class="badge bg-secondary">QUEUEING:0</span>
+                      <span id="broker-prepared" class="badge bg-info">PREPARED:0</span>
+                    </div>
+                    <div class="button-group">
+                      <button id="errorBroker" class="btn btn-danger btn-sm position-relative overflow-hidden glitch-btn">Broker Load</button>
+                    </div>
+                  </div>
+                  <div class="table-responsive" style="height: 100vh; overflow-y: auto">
+                    <!-- 这里可以放置自定义内容 -->
+                    <table id="broker-table" class="table table-sm table-striped table-hover">
+                      <thead class="table-dark" style="position: sticky; top: 0">
+                        <tr>
+                          <th>ID</th>
+                          <th>Label</th>
+                          <th>State</th>
+                          <th>Progress</th>
+                          <th>Type</th>
+                          <th>Completion</th>
+                          <th>Backends</th>
+                          <th>Time(second)</th>
+                          <th>Command</th>
+                        </tr>
+                      </thead>
+                      <tbody id="broker-data">
+                        <!-- 数据通过JS动态加载 -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- submit -->
+                <div class="tab-pane fade" id="submit" role="tabpanel" aria-labelledby="submit-tab">
+                  <div class="filter-section">
+                    <div class="badge-group">
+                      <span id="submit-total" class="badge bg-info">TOTAL:0</span>
+                      <span id="submit-running" class="badge bg-success">RUNNING:0</span>
+                      <span id="submit-pending" class="badge bg-warning">PENDING:0</span>
+                      <span id="submit-merged" class="badge bg-secondary">MERGED:0</span>
+                    </div>
+                    <div class="button-group">
+                      <!-- 报错观察按钮 -->
+                      <button id="errorSubmit" class="btn btn-danger btn-sm position-relative overflow-hidden glitch-btn">Submit Task</button>
+                    </div>
+                  </div>
+                  <div class="table-responsive" style="height: 100vh; overflow-y: auto">
+                    <!-- 这里可以放置自定义内容 -->
+                    <table id="submit-table" class="table table-sm table-striped table-hover">
+                      <thead class="table-dark" style="position: sticky; top: 0">
+                        <tr>
+                          <th>ID</th>
+                          <th>QueryId</th>
+                          <th>Taskname</th>
+                          <th>State</th>
+                          <th>Database</th>
+                          <th>Progress</th>
+                          <th>Time(second)</th>
+                          <th>Command</th>
+                        </tr>
+                      </thead>
+                      <tbody id="submit-data">
+                        <!-- 数据通过JS动态加载 -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- resource group -->
+                <div class="tab-pane fade" id="resourcegroup" role="tabpanel" aria-labelledby="resourcegroup-tab">
+                  <div class="filter-section">
+                    <div class="badge-group">
+                      <span id="resourcegroup-total" class="badge bg-info">TOTAL:0</span>
+                      <span id="resourcegroup-memory" class="badge bg-warning">MEMORY:0</span>
+                    </div>
+                  </div>
+                  <div class="table-responsive" style="height: 100vh; overflow-y: auto">
+                    <!-- 这里可以放置自定义内容 -->
+                    <table id="resourcegroup-table" class="table table-sm table-striped table-hover">
+                      <thead class="table-dark" style="position: sticky; top: 0">
+                        <tr>
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>User</th>
+                          <th>CpuWeight</th>
+                          <th>MemLimit</th>
+                          <th>ConcurrencyLimit</th>
+                          <th>bigQueryCPU</th>
+                          <th>bigQueryRows</th>
+                          <th>bigQueryMemLimit</th>
+                          <th>Command</th>
+                        </tr>
+                      </thead>
+                      <tbody id="resourcegroup-data">
+                        <!-- 数据通过JS动态加载 -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- stream load -->
+                <div class="tab-pane fade" id="stream" role="tabpanel" aria-labelledby="stream-tab">
+                  <div class="filter-section">
+                    <div class="badge-group">
+                      <span id="stream-count" class="badge bg-info">TOTAL:0</span>
+                      <span id="stream-persistent" class="badge bg-success">PERSISTENT:0</span>
+                      <span id="stream-memory" class="badge bg-warning">MEMORY:0</span>
+                    </div>
+                    <div class="button-group">
+                      <button id="errorStream" class="btn btn-danger btn-sm position-relative overflow-hidden glitch-btn">Stream load</button>
+                    </div>
+                  </div>
+                  <div class="table-responsive" style="height: 100vh; overflow-y: auto">
+                    <!-- 这里可以放置自定义内容 -->
+                    <table id="stream-table" class="table table-sm table-striped table-hover">
+                      <thead class="table-dark" style="position: sticky; top: 0">
+                        <tr>
+                          <th>Schema</th>
+                          <th>Persistent Index</th>
+                          <th>DataSize</th>
+                          <th>Estimated Memory Usage(GB)</th>
+                          <th>State</th>
+                        </tr>
+                      </thead>
+                      <tbody id="stream-data">
+                        <!-- 数据通过JS动态加载 -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <!-- 可以继续添加更多标签页内容 -->
+              </div>
+            </div>
+          </div>
+
+          <!-- 右边面板 -->
+          <div class="right-panel">
+            <div class="panel-content">
+              <h4 style="margin-bottom: 15px">查询队列</h4>
+              <!-- 新增的状态和操作栏 -->
+              <div class="filter-section">
+                <div class="badge-group">
+                  <span id="slow-total" class="badge bg-info">total:0</span>
+                  <span id="slow-clear" class="badge bg-secondary">clear:0</span>
+                  <span id="slow-warn" class="badge bg-warning">warn:0</span>
+                  <span id="slow-kill" class="badge bg-danger">kill:0</span>
+                </div>
+                <div class="button-group">
+                  <button id="datetime-info" class="btn btn-dark btn-sm ms-2">...</button>
+                </div>
+              </div>
+              <!-- 队列消耗情况 -->
+              <div class="table-responsive" style="max-height: 30vh; overflow-y: auto">
+                <table id="resource-table" class="table table-sm table-striped">
+                  <thead class="table-dark" style="position: sticky; top: 0">
+                    <tr>
+                      <th>Order</th>
+                      <th>ID</th>
+                      <th>ScanBytes</th>
+                      <th>ScanRows</th>
+                      <th>MemoryUsage</th>
+                      <th>CPUTime</th>
+                      <th>ExecTime</th>
+                    </tr>
+                  </thead>
+                  <tbody id="resource-data">
+                    <!-- 资源数据通过JS动态加载 -->
+                  </tbody>
+                </table>
+              </div>
+              <!-- 慢查询查杀汇报 -->
+              <div class="mt-4">
+                <h5 class="border-bottom pb-2">
+                  <i class="bi bi-speedometer2"></i>
+                  拦截汇报
+                </h5>
+                <div class="table-responsive" style="max-height: 70vh; flex: 1; overflow-y: auto">
+                  <table class="table table-sm table-hover">
+                    <thead class="table-light" style="position: sticky; top: 0">
+                      <tr>
+                        <th>Order</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>StartTime</th>
+                        <th>ExecTime</th>
+                        <th>Type</th>
+                        <th>State</th>
+                      </tr>
+                    </thead>
+                    <tbody id="slow-data"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- 模态框 -->
+    <div class="modal-overlay" id="modalOverlay">
+      <div class="modal-container">
+        <div class="modal-header">
+          <span class="modal-title">报错详情</span>
+          <button class="close-button" id="closeModal">&times;</button>
+        </div>
+        <div id="errorDetailsContainer">
+          <table class="table table-sm table-hover">
+            <thead class="table-light" style="position: sticky; top: 0">
+              <tr>
+                <th>ID</th>
+                <th>时间</th>
+                <th>用户</th>
+                <th>查询ID</th>
+                <th>错误消息</th>
+              </tr>
+            </thead>
+            <tbody id="err-data">
+              <!-- 数据将通过JS动态加载 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- 饼图模态框 -->
+    <div class="modal-overlay" id="pie-modalOverlay">
+      <div class="modal-container">
+        <div class="modal-header">
+          <span class="modal-title">详情</span>
+          <button class="close-button" id="pie-closeModal">&times;</button>
+        </div>
+        <div id="pie-DetailsContainer">
+          <table class="table table-sm table-hover">
+            <tbody id="pie-data">
+              <!-- 数据将通过JS动态加载 -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- 悬浮吸附框 -->
+    <div id="bead">
+      <div class="bead-content">
+        <div class="bead-title">ERRORS</div>
+        <div class="bead-value" id="errquery">--%</div>
+        <div class="bead-value" id="errbroker">--%</div>
+        <div class="bead-value" id="errsubmit">--%</div>
+      </div>
+    </div>
+    <script src="/static/selectid.js"></script>
+    <script src="/static/watermark.js"></script>
+    <script src="/static/selectapp.js"></script>
+    <script src="/static/err-query.js"></script>
+    <script src="/static/err-broker.js"></script>
+    <script src="/static/err-submit.js"></script>
+    <script src="/static/err-stream.js"></script>
+    <script src="/static/pie-submit.js"></script>
+    <script src="/static/bead.js"></script>
+    <script src="/static/datetime-info.js"></script>
+    <script src="/static/echarts.min.js"></script>
+    <script src="/static/shine.js"></script>
+    <script src="/static/dashboard.js"></script>
+  </body>
+</html>

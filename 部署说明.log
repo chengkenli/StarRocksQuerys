@@ -1,0 +1,59 @@
+一、配置：先配置.yaml
+
+metadb:
+  host: 127.0.0.1 #mysql数据库地址
+  port: 3306 #mysql数据库端口
+  user: root #mysql数据库账号
+  password: **************1. #mysql数据库密码
+  base: chengken.starrocks_information_connections #mysql数据库(StarRocks连接信息表)
+
+server:
+  port: 8084 #程序服务端口
+  token: "123456" #程序token
+  loadhtmlglob: templates/html/* #html静态页面地址（templates文件夹在项目中）
+  loadstatic: templates/static #js、css静态文件地址
+
+
+schema:
+  role:
+    admin: cndlopsns  #管理员账号，标签
+    point: svc #二级重点账号，标签
+  ipsystem: ops.cn_asset_information  #IP元数据表
+  slowstmt: ops.ops_starrocks_schema_slowquery  #慢查询元数据表
+  auditops: audit.starrocks_audit_log #starrocks审计日志表
+  ipapp: sr-adhoc #主集群名称
+  whitelist: root,cndlopsns,c0l0f9l,cndlsrapp,dorisops #白名单用户
+
+# 用户侧报错&平台侧报错标记
+category:
+  0:
+  1:
+    - 'Connection reset by peer'
+    - 'rpc failed'
+    - 'since transaction status unknown'
+    - 'Commit failed'
+    - 'crash of backends'
+    - 'Not connected to'
+    - 'Fe abort the task'
+    - 'no associated load channel'
+    - 'Failed to lock database'
+  2:
+    - 'is not found'
+    - 'cannot be resolved'
+    - 'Unknown user'
+    - 'Unknown table'
+    - 'Access denied'
+    - 'type:LOAD_RUN_FAIL; msg:Cancelled'
+    - 'Mem usage has exceed the limit of single query'
+    - 'please check trackingSQL'
+    - 'is not active'
+
+
+log:
+  path: '/u/users/svccndlopsns/chengken/log' #日志路径
+
+
+
+二、启动程序
+三、浏览器进入web
+四、输入token：123456+<日期>，比如今天是2025-06-10，那么正式token是：1234560610

@@ -1,0 +1,52 @@
+
+metadb:
+  host: 127.0.0.1
+  port: 3306
+  user: root
+  password: **************1.
+  base: chengken.starrocks_information_connections
+
+server:
+  port: 8084
+  token: "123456"
+  loadhtmlglob: /u1/dlopsnas/chengken/templates/html/*
+  loadstatic: /u1/dlopsnas/chengken/templates/static
+
+
+schema:
+  role:
+    admin: cndlopsns
+    point: svc
+  ipsystem: ops.cn_asset_information
+  slowstmt: ops.ops_starrocks_schema_slowquery
+  auditops: audit.starrocks_audit_log
+  emrwedat: ops.ops_tencent_emr_ip
+  ipapp: sr-adhoc
+  whitelist: root,cndlopsns,c0l0f9l,cndlsrapp,dorisops,svccn_flash_report,svccn_flash_report_dev,svccnodshs,svccnadssr_ec,svccndwdsr_ec,svccndimsr_ec,svccnsamshs,svccnfinsam,svccndwssr_ec,svccncdptodatalake,dding01,a0d0f8i,svccnfinhs_c,svccnfinsoxhs_c,svccnfinsoxhs_c_dev,svccnfinhs,svccnfinhs_c_dev,svccnfrhs_c,svccndatafinhs,svccnaudiths,svccncdpapp,svccncdptodatalake,svccnmaapp,svccncdpapi,svccn_ccop,svccncdpdata,ma_test_user
+
+category:
+  0:
+  1:
+    - 'Connection reset by peer'
+    - 'rpc failed'
+    - 'since transaction status unknown'
+    - 'Commit failed'
+    - 'crash of backends'
+    - 'Not connected to'
+    - 'Fe abort the task'
+    - 'no associated load channel'
+    - 'Failed to lock database'
+  2:
+    - 'is not found'
+    - 'cannot be resolved'
+    - 'Unknown user'
+    - 'Unknown table'
+    - 'Access denied'
+    - 'type:LOAD_RUN_FAIL; msg:Cancelled'
+    - 'Mem usage has exceed the limit of single query'
+    - 'please check trackingSQL'
+    - 'is not active'
+
+log:
+  path: '/u/users/svccndlopsns/chengken/log'
+
